@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsApp3.iOS", "FormsApp3\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsApp3", "FormsApp3\FormsApp3\FormsApp3.csproj", "{24982365-3635-4CA8-A0C4-EB7BA69F1A44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "get_nano", "get_nano\get_nano.csproj", "{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{24982365-3635-4CA8-A0C4-EB7BA69F1A44}.Release|iPhone.Build.0 = Release|Any CPU
 		{24982365-3635-4CA8-A0C4-EB7BA69F1A44}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{24982365-3635-4CA8-A0C4-EB7BA69F1A44}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|iPhone.Build.0 = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4FB4D4A0-0E67-45DA-A57B-181B65A4D681}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
