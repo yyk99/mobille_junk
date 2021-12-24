@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tempara4a", "App1\Tempara4a.csproj", "{C9706682-CE2E-450D-8BD5-769439DF1F37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App2", "App2\App2.csproj", "{912DBF5C-B61D-4C47-A4AF-110754786836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,12 @@ Global
 		{C9706682-CE2E-450D-8BD5-769439DF1F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9706682-CE2E-450D-8BD5-769439DF1F37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9706682-CE2E-450D-8BD5-769439DF1F37}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912DBF5C-B61D-4C47-A4AF-110754786836}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
