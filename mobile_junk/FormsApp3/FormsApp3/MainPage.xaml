@@ -9,7 +9,7 @@
         </Frame>
         <!--Add Button Here -->
         <Button Text="Click Me" Clicked="Handle_Clicked" />
-
+        <Button Text="Click Me Too" Clicked="Handle_Clicked_Async" />
         <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10" />
         <!--More Labels here -->
     </StackLayout>

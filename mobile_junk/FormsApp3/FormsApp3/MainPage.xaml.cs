@@ -46,5 +46,18 @@ namespace FormsApp3
             }
 #endif
         }
+
+        async void Handle_Clicked_Async(object sender, System.EventArgs e)
+        {
+            var butt = (Button)sender;
+            ++count;
+            butt.Text = $"You clicked {count} times.";
+
+            using (var nano = new Nano())
+            {
+                var r = await nano.GetRecord();
+                butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
+            }
+        }
     }
 }
