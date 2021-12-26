@@ -34,6 +34,23 @@ namespace FormsApp3
             System.Diagnostics.Debug.WriteLine($"Handle_Clicked_Async: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
         }
 
+        async void Handle_Clicked_Ping(object sender, System.EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Clicked_Ping: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
+            var butt = (Button)sender;
+            ++count;
+            butt.Text = $"You clicked {count} times.";
+
+            var nano = new Nano();
+            string r = await nano.Ping();
+            butt.Text = $"{count}: {r.TrimEnd()}";
+
+            await Task.Delay(1000);
+            butt.Text = "Ping Me";
+
+            System.Diagnostics.Debug.WriteLine($"Clicked_Ping: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
+        }
+
         // Handle_Clicked_Version
         async void Handle_Clicked_Version(object sender, System.EventArgs e)
         {

@@ -27,24 +27,28 @@ namespace Embedded
             // client.Connect(endPoint);
         }
 
-        public async Task Ping()
+        public async Task<string> Ping()
         {
-            await Task.Run(() =>
+
+            using (UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Any, 0)))
             {
-                using (UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Any, 0)))
+                byte[] msgOpen = Encoding.ASCII.GetBytes("CONNECT\r\n");
+                int ok = client.Send(msgOpen, msgOpen.Length, endPoint);
+
+                var rcv_task = client.ReceiveAsync();
+                if (await Task.WhenAny(rcv_task, Task.Delay(TIMEOUT)) != rcv_task)
                 {
-                    byte[] msgOpen = Encoding.ASCII.GetBytes("CONNECT\r\n");
-                    int ok = client.Send(msgOpen, msgOpen.Length, endPoint);
-
-                    IPEndPoint remote = new IPEndPoint(IPAddress.Any, 0);
-                    byte[] receiveBytes = client.Receive(ref remote);
-
-                    Console.WriteLine("Received: {0}", Encoding.ASCII.GetString(receiveBytes));
-
-                    byte[] msgClose = Encoding.ASCII.GetBytes("CLOSE\r\n");
-                    ok = client.Send(msgClose, msgClose.Length, endPoint);
+                    // timeout!
+                    client.Close();
+                    return "BAD: Timeout";
                 }
-            });
+                byte[] receiveBytes = rcv_task.Result.Buffer;
+
+                byte[] msgClose = Encoding.ASCII.GetBytes("CLOSE\r\n");
+                client.Send(msgClose, msgClose.Length, endPoint);
+
+                return Encoding.ASCII.GetString(receiveBytes);
+            }
         }
 
         public async Task<Record> GetRecord()

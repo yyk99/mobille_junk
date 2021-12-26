@@ -9,6 +9,7 @@
         </Frame>
         <!--Add Button Here -->
         <Button Text="Click Me Too" Clicked="Handle_Clicked_Async" />
+        <Button Text="Ping Me" Clicked="Handle_Clicked_Ping" />
         <Button Text="Version" Clicked="Handle_Clicked_Version" />
         <!--More Labels here -->
     </StackLayout>
