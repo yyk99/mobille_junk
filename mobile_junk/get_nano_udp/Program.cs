@@ -20,10 +20,7 @@ namespace get_nano_udp
 
             {
                 var t = nano.Ping();
-                string s = t.Result;
-                if (s.EndsWith("\r\n"))
-                    s = s.TrimEnd();
-                Console.WriteLine("PING: {0}", s);
+                Console.WriteLine("PING: {0}", t.Result.TrimEnd());
             }
             {
                 var t2 = nano.GetRecord();
