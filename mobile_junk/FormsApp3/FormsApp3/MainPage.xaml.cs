@@ -16,40 +16,8 @@ namespace FormsApp3
         {
             InitializeComponent();
         }
-        int count = 0;
-        Nano nano;
-        Task<Record> tsk;
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            count++;
-#if false
-            ((Button)sender).Text = $"You clicked {count} times.";
-#else
-            var butt = (Button)sender;
-            if (nano == null)
-            {
-                nano = new Nano();
-                tsk = nano.GetRecord();
-                butt.Text = "Started...";
-            }
-            else
-            {
-                if (tsk.IsCompleted)
-                {
-                    var r = tsk.Result;
-                    butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
-                    tsk.Dispose();
-                    nano = null;
-                    tsk = null;
-                }
-                else
-                {
-                    butt.Text = "In progress...";
-                }
-            }
-#endif
-        }
 
+        int count = 0;
         async void Handle_Clicked_Async(object sender, System.EventArgs e)
         {
             var butt = (Button)sender;
@@ -66,7 +34,7 @@ namespace FormsApp3
         {
             var butt = (Button)sender;
 
-            butt.Text = "0.0.1";
+            butt.Text = "0.0.2";
 
             await Task.Delay(1000);
 
