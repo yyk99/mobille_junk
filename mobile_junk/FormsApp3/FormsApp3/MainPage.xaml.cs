@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+using Embedded;
+
 namespace FormsApp3
 {
     public partial class MainPage : ContentPage
@@ -35,7 +37,6 @@ namespace FormsApp3
                 {
                     var r = tsk.Result;
                     butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
-                    nano.Dispose();
                     tsk.Dispose();
                     nano = null;
                     tsk = null;
@@ -53,11 +54,9 @@ namespace FormsApp3
             ++count;
             butt.Text = $"You clicked {count} times.";
 
-            using (var nano = new Nano())
-            {
-                var r = await nano.GetRecord();
-                butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
-            }
+            var nano = new Nano();
+            var r = await nano.GetRecord();
+            butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
         }
     }
 }
