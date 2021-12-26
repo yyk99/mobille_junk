@@ -17,6 +17,7 @@ namespace Embedded
     class Nano
     {
         IPEndPoint endPoint;
+        const int TIMEOUT = 10 * 1000;
 
         public Nano(string host = "192.168.1.136", int port = 2390)
         {
@@ -55,13 +56,28 @@ namespace Embedded
                 byte[] msgOpen = Encoding.ASCII.GetBytes("CONNECT\r\n");
                 int ok = client.Send(msgOpen, msgOpen.Length, endPoint);
 
-                UdpReceiveResult received = await client.ReceiveAsync();
+                var rcv_task = client.ReceiveAsync();
+                if (await Task.WhenAny(rcv_task, Task.Delay(TIMEOUT)) != rcv_task)
+                {
+                    // timeout!
+                    client.Close();
+                    return new Record { stamp = 0x0 };
+                }
+                UdpReceiveResult received = rcv_task.Result;
                 var receiveBytes = received.Buffer;
 
                 System.Diagnostics.Debug.WriteLine($"Received: {receiveBytes.Length} bytes");
                 System.Diagnostics.Debug.WriteLine($"Received: {Encoding.ASCII.GetString(receiveBytes)}");
 
-                received = await client.ReceiveAsync();
+                rcv_task = client.ReceiveAsync();
+                if (await Task.WhenAny(rcv_task, Task.Delay(TIMEOUT)) != rcv_task)
+                {
+                    // timeout!
+                    client.Close();
+                    return new Record { stamp = 0x0 };
+                }
+
+                received = rcv_task.Result;
                 receiveBytes = received.Buffer;
                 System.Diagnostics.Debug.WriteLine($"Received: {receiveBytes.Length} bytes");
 
@@ -80,6 +96,7 @@ namespace Embedded
                 byte[] msgClose = Encoding.ASCII.GetBytes("CLOSE\r\n");
                 client.Send(msgClose, msgClose.Length, endPoint);
 
+                client.Close();
                 return res;
             }
         }
