@@ -104,5 +104,10 @@ namespace Embedded
                 return res;
             }
         }
+
+        public IPEndPoint RemoteEndpoint
+        {
+            get { return endPoint; }
+        }
     }
 }

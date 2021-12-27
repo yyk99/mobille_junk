@@ -43,9 +43,9 @@ namespace FormsApp3
 
             var nano = new Nano();
             string r = await nano.Ping();
-            butt.Text = $"{count}: {r.TrimEnd()}";
-
-            await Task.Delay(1000);
+            butt.Text = $"{nano.RemoteEndpoint.Address} {r.Trim()}";
+            
+            await Task.Delay(10 * 1000);
             butt.Text = "Ping Me";
 
             System.Diagnostics.Debug.WriteLine($"Clicked_Ping: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
@@ -56,7 +56,7 @@ namespace FormsApp3
         {
             var butt = (Button)sender;
 
-            butt.Text = "0.0.4";
+            butt.Text = "0.1.0";
 
             await Task.Delay(1000);
 
