@@ -25,7 +25,7 @@ namespace FormsApp3
             ++count;
             butt.Text = $"You clicked {count} times.";
 
-            var nano = new Nano();
+            var nano = new Nano(GetSource());
             var r = await nano.GetRecord();
             if (r.stamp != 0)
                 butt.Text = $"{count}: HUM: {r.h / 100.00}% TEMP: {r.c / 100.00}C {r.f / 100.00}F";
@@ -41,7 +41,7 @@ namespace FormsApp3
             ++count;
             butt.Text = $"You clicked {count} times.";
 
-            var nano = new Nano();
+            var nano = new Nano(GetSource());
             string r = await nano.Ping();
             butt.Text = $"{nano.RemoteEndpoint.Address} {r.Trim()}";
             
@@ -51,16 +51,37 @@ namespace FormsApp3
             System.Diagnostics.Debug.WriteLine($"Clicked_Ping: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
         }
 
+        int source_cnt = 0;
+        string[] sources = { "192.168.1.136" , "192.168.1.137" };
+
+        string GetSource()
+        {
+            int pos = source_cnt % sources.Length;
+            return sources[pos];
+        }
+
+        async void Handle_Clicked_Source(object sender, System.EventArgs e)
+        {
+            var butt = (Button)sender;
+            ++source_cnt;
+
+            butt.Text = $"Selected: {GetSource()}";
+
+            await Task.Delay(5 * 1000);
+
+            butt.Text = "Select Source";
+        }
+
         // Handle_Clicked_Version
         async void Handle_Clicked_Version(object sender, System.EventArgs e)
         {
             var butt = (Button)sender;
 
-            butt.Text = "0.1.0";
+            butt.Text = $"Version: 0.2.0\nSource: {GetSource()}";
 
-            await Task.Delay(1000);
+            await Task.Delay(3000);
 
-            butt.Text = "Version";
+            butt.Text = "Info";
         }
     }
 }

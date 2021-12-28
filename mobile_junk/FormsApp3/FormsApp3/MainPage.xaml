@@ -5,12 +5,13 @@
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Label Text="Thermo Zhometer" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <!--Add Button Here -->
         <Button Text="Click Me Too" Clicked="Handle_Clicked_Async" />
         <Button Text="Ping Me" Clicked="Handle_Clicked_Ping" />
-        <Button Text="Version" Clicked="Handle_Clicked_Version" />
+        <Button Text="Select Source" Clicked="Handle_Clicked_Source" />
+        <Button Text="Info" Clicked="Handle_Clicked_Version" />
         <!--More Labels here -->
     </StackLayout>
 
