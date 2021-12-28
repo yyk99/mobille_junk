@@ -13,13 +13,16 @@
 #include <cassert>
 
 #pragma comment(lib, "ws2_32.lib")
-using namespace std;
 
 int main() 
 {
     const char* pkt = "CONNECT\r\n";
     const char* srcIP = "0.0.0.0";
+#if 0
     const char* destIP = "192.168.1.136";
+#else
+    const char* destIP = "192.168.1.137";
+#endif
     int destPort = 2390;
     sockaddr_in dest;
     sockaddr_in local;
