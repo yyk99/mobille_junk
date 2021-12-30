@@ -17,6 +17,12 @@ namespace FormsApp3
             InitializeComponent();
         }
 
+        public Version GetVersion()
+        {
+            return new Version(0, 2, 2);
+        }
+
+        System.Threading.CancellationTokenSource stopWait = new System.Threading.CancellationTokenSource();
         int count = 0;
         async void Handle_Clicked_Async(object sender, System.EventArgs e)
         {
@@ -44,8 +50,13 @@ namespace FormsApp3
             var nano = new Nano(GetSource());
             string r = await nano.Ping();
             butt.Text = $"{nano.RemoteEndpoint.Address} {r.Trim()}";
-            
-            await Task.Delay(10 * 1000);
+
+            try
+            {
+                stopWait = new System.Threading.CancellationTokenSource();
+                await Task.Delay(10 * 1000, stopWait.Token);
+            }
+            catch {  }
             butt.Text = "Ping Me";
 
             System.Diagnostics.Debug.WriteLine($"Clicked_Ping: tid={System.Threading.Thread.CurrentThread.ManagedThreadId}");
@@ -67,7 +78,7 @@ namespace FormsApp3
 
             butt.Text = $"Selected: {GetSource()}";
 
-            await Task.Delay(5 * 1000);
+            await Task.Delay(5 * 1000, stopWait.Token);
 
             butt.Text = "Select Source";
         }
@@ -77,11 +88,36 @@ namespace FormsApp3
         {
             var butt = (Button)sender;
 
-            butt.Text = $"Version: 0.2.0\nSource: {GetSource()}";
+            butt.Text = $"Version: {GetVersion()}\nSource: {GetSource()}";
 
-            await Task.Delay(3000);
+            try 
+            {
+                stopWait = new System.Threading.CancellationTokenSource();
+                await Task.Delay(3000, stopWait.Token);
+            }  
+            catch  
+            {
+                // ...
+            }
 
             butt.Text = "Info";
+        }
+
+        void OnSourceRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var butt = (RadioButton)sender;
+
+            if (butt == null)
+                return;
+            if (butt.IsChecked)
+            {
+                System.Diagnostics.Debug.Write($"value={butt.ContentAsString()}, IsChecked={butt.IsChecked}");
+                var pos = Array.IndexOf(sources, butt.ContentAsString());
+                if (pos >= 0)
+                    source_cnt = pos;
+                System.Diagnostics.Debug.Write($"source_cnt={source_cnt}");
+                stopWait.Cancel();
+            }
         }
     }
 }

@@ -5,14 +5,28 @@
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Thermo Zhometer" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Label Text="ThermoScope" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <!--Add Button Here -->
         <Button Text="Click Me Too" Clicked="Handle_Clicked_Async" />
         <Button Text="Ping Me" Clicked="Handle_Clicked_Ping" />
+        <!--
         <Button Text="Select Source" Clicked="Handle_Clicked_Source" />
+        -->
         <Button Text="Info" Clicked="Handle_Clicked_Version" />
         <!--More Labels here -->
+        <StackLayout>
+            <!--  Text="What's your favorite animal?" /> -->
+            <RadioButton Content="192.168.1.136" IsChecked="true" GroupName="source" 
+                         CheckedChanged="OnSourceRadioButtonCheckedChanged"
+                         />
+            <RadioButton Content="192.168.1.137" GroupName="source" 
+                         CheckedChanged="OnSourceRadioButtonCheckedChanged"
+                         />
+            <!-- 
+            <RadioButton Content="192.168.1.136" IsChecked="true" GroupName="source2" />
+            <RadioButton Content="192.168.1.137" GroupName="source2" />
+            -->
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>
